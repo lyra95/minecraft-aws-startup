@@ -19,8 +19,8 @@ const group = new aws.ec2.SecurityGroup("Minecraft group", {
     ]
 });
 
-const server = new aws.ec2.Instance("webserver-www", {
-    instanceType: size,
+const server = new aws.ec2.Instance("Minecraft ec2", {
+    instanceType: "t2.micro",
     vpcSecurityGroupIds: [ group.id ], // reference the security group resource above
     ami: ami.id,
 });
