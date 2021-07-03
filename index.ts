@@ -1,6 +1,21 @@
-import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
-import * as awsx from "@pulumi/awsx";
+import * as pulumi from "@pulumi/pulumi";
+
+const ami = pulumi.output(aws.ec2.getAmi({
+    filters: [
+        {
+            name: "root-device-type",
+            values: ["ebs"],
+        },
+        {
+            name: "virtualization-type",
+            values: ["hvm"],
+        },
+    ],
+    mostRecent: true,
+    owners: ["amazon"],
+    nameRegex: "^amzn2-ami-minimal-hvm-[0-9.]*-x86_64-ebs$"
+}));
 
 // Set this with your friends IPs
 const group = new aws.ec2.SecurityGroup("Minecraft group", {
