@@ -1,0 +1,3 @@
+name: minecraft-aws-startup
+runtime: nodejs
+description: set Minecraft server in EC2 free instance
